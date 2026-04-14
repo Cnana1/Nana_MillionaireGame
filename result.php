@@ -77,7 +77,9 @@ unset($_SESSION['filtered_options']);
 <html>
 <head><title>Result</title></head>
 <body>
-
+<form method="POST" action="logout.php">
+    <button type="submit">Logout</button>
+</form>
 <h2><?php echo $isCorrect ? "✅ Correct!" : "❌ Wrong!"; ?></h2>
 
 <p><b>Correct Answer:</b> <?php echo $correctText; ?></p>

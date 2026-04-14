@@ -27,7 +27,7 @@ if (!isset($_SESSION['correct_count'])) $_SESSION['correct_count'] = 0;
 if (!isset($_SESSION['total_count'])) $_SESSION['total_count'] = 0;
 
 if (!isset($_SESSION['lifelines'])) {
-    $_SESSION['lifelines'] = ["5050"=>true,"phone"=>true];
+    $_SESSION['lifelines'] = ["phone"=>true,"50/50"=>true];
 }
 
 if (!isset($_SESSION['question_locked'])) {
@@ -128,9 +128,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['lifeline'])) {
     }
 
     // 50/50
-    if ($_POST['lifeline'] === "5050" && $_SESSION['lifelines']['5050']) {
+    if ($_POST['lifeline'] === "50/50" && $_SESSION['lifelines']['50/50']) {
 
-        $_SESSION['lifelines']['5050'] = false;
+        $_SESSION['lifelines']['50/50'] = false;
         $_SESSION['question_locked'] = true;
 
         $correct = $current['answer'];
@@ -180,7 +180,7 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
     <title>Game</title>
 </head>
 <body>
-<form method="POST" action="logout.php" style="display:inline;">
+<form method="POST" action="logout.php">
     <button type="submit">Logout</button>
 </form>
 <h2>Welcome, <?php echo $_SESSION['user']; ?></h2>
@@ -211,9 +211,8 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
 <!-- LIFELINES -->
 <form method="POST">
     <?php if (!$isFirstQuestion): ?>
-
-       <?php if (isset($_SESSION['lifelines']['5050']) && $_SESSION['lifelines']['5050']): ?>
-            <button name="lifeline" value="5050">50/50</button>
+       <?php if (isset($_SESSION['lifelines']['50/50']) && $_SESSION['lifelines']['50/50']): ?>
+            <button name="lifeline" value="50/50">50/50</button>
         <?php endif; ?>
 
         <?php if (isset($_SESSION['lifelines']['phone']) && $_SESSION['lifelines']['phone']): ?>

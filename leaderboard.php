@@ -19,8 +19,8 @@ usort($data, function($a, $b) {
     <title>Leaderboard</title>
 </head>
 <body>
-<form action="game.php" method="POST">
-    <button type="submit" name="reset" value="1">Logout</button>
+<form method="POST" action="logout.php">
+    <button type="submit">Logout</button>
 </form>
 <h2>Leaderboard</h2>
 
