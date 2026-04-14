@@ -1,0 +1,42 @@
+<?php
+$file = "leaderboard.json";
+
+if (!file_exists($file)) {
+    file_put_contents($file, json_encode([]));
+}
+
+$data = json_decode(file_get_contents($file), true);
+
+// Sort descending
+usort($data, function($a, $b) {
+    return $b['score'] - $a['score'];
+});
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Leaderboard</title>
+</head>
+<body>
+
+<h2>Leaderboard</h2>
+
+<?php if (empty($data)): ?>
+    <p>No scores yet.</p>
+<?php else: ?>
+    <ol>
+        <?php foreach (array_slice($data, 0, 10) as $entry): ?>
+            <li>
+                <?php echo htmlspecialchars($entry['user']); ?> - 
+                <?php echo $entry['score']; ?>
+            </li>
+        <?php endforeach; ?>
+    </ol>
+<?php endif; ?>
+
+<br>
+<a href="game.php?reset=1">Play Again</a>
+
+</body>
+</html>
