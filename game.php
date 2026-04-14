@@ -1,21 +1,16 @@
 <?php
+
 session_start();
 
 
-
-// Redirect if user is not logged in
+/* =========================
+   LOGIN CHECK
+========================= */
 if (!isset($_SESSION['user'])) {
     header('Location: login.php');
     exit();
 }
 
-// --- RESET ---
-if (isset($_GET['reset'])) {
-    session_destroy();
-    session_start();
-}
-
-// --- USER if (!isset($_SESSION['user'])) $_SESSION['user'] = "Guest"; ---
 
 
 // --- INIT ---
@@ -185,7 +180,9 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
     <title>Game</title>
 </head>
 <body>
-
+<form method="POST" action="logout.php" style="display:inline;">
+    <button type="submit">Logout</button>
+</form>
 <h2>Welcome, <?php echo $_SESSION['user']; ?></h2>
 
 <p>Score: <?php echo $_SESSION['score']; ?></p>
@@ -215,11 +212,11 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
 <form method="POST">
     <?php if (!$isFirstQuestion): ?>
 
-        <?php if ($_SESSION['lifelines']['5050']): ?>
+       <?php if (isset($_SESSION['lifelines']['5050']) && $_SESSION['lifelines']['5050']): ?>
             <button name="lifeline" value="5050">50/50</button>
         <?php endif; ?>
 
-        <?php if ($_SESSION['lifelines']['phone']): ?>
+        <?php if (isset($_SESSION['lifelines']['phone']) && $_SESSION['lifelines']['phone']): ?>
             <button name="lifeline" value="phone">Phone a Friend</button>
         <?php endif; ?>
 

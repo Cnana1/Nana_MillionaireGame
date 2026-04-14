@@ -19,7 +19,9 @@ usort($data, function($a, $b) {
     <title>Leaderboard</title>
 </head>
 <body>
-
+<form action="game.php" method="POST">
+    <button type="submit" name="reset" value="1">Logout</button>
+</form>
 <h2>Leaderboard</h2>
 
 <?php if (empty($data)): ?>
@@ -36,7 +38,7 @@ usort($data, function($a, $b) {
 <?php endif; ?>
 
 <br>
-<a href="game.php?reset=1">Play Again</a>
+
 
 </body>
 </html>
