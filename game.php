@@ -178,10 +178,12 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
 <html>
 <head>
     <title>Game</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="game-page">
+<div class="game-container">
 <form method="POST" action="logout.php">
-    <button type="submit">Logout</button>
+    <button type="submit" class="btn btn-logout">Logout</button>
 </form>
 <h2>Welcome, <?php echo $_SESSION['user']; ?></h2>
 
@@ -193,7 +195,7 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
 
 
 <?php if ($toolboxTip): ?>
-    <div style="padding:10px; background:#f5f5f5; border-left:4px solid #999; margin-bottom:10px;">
+    <div class="tip-box">
         <?php echo $toolboxTip; ?>
     </div>
 <?php endif; ?>
@@ -212,11 +214,11 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
 <form method="POST">
     <?php if (!$isFirstQuestion): ?>
        <?php if (isset($_SESSION['lifelines']['50/50']) && $_SESSION['lifelines']['50/50']): ?>
-            <button name="lifeline" value="50/50">50/50</button>
+            <button name="lifeline" value="50/50" class="btn btn-lifeline">50/50</button>
         <?php endif; ?>
 
         <?php if (isset($_SESSION['lifelines']['phone']) && $_SESSION['lifelines']['phone']): ?>
-            <button name="lifeline" value="phone">Phone a Friend</button>
+            <button name="lifeline" value="phone" class="btn btn-lifeline">Phone a Friend</button>
         <?php endif; ?>
 
     <?php else: ?>
@@ -228,15 +230,18 @@ $questionValue = ($basePoints + $bonus) * ($streakMultiplier + 1);
 
 <!-- ANSWERS -->
 <form method="POST" action="result.php">
+    <div class="options-container">
     <?php foreach ($optionsToShow as $k=>$v): ?>
-        <label>
+        <label class="option-label">
             <input type="radio" name="answer" value="<?php echo $k; ?>" required>
             <?php echo "$k: $v"; ?>
-        </label><br>
+        </label>
     <?php endforeach; ?>
+    </div>
 
-    <button type="submit">Submit</button>
+    <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+</div>
 </body>
 </html>

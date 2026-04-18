@@ -75,10 +75,14 @@ unset($_SESSION['filtered_options']);
 
 <!DOCTYPE html>
 <html>
-<head><title>Result</title></head>
-<body>
+<head>
+    <title>Result</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body class="game-page">
+<div class="game-container">
 <form method="POST" action="logout.php">
-    <button type="submit">Logout</button>
+    <button type="submit" class="btn btn-logout">Logout</button>
 </form>
 <h2><?php echo $isCorrect ? "✅ Correct!" : "❌ Wrong!"; ?></h2>
 
@@ -96,11 +100,11 @@ unset($_SESSION['filtered_options']);
 <?php if (!$gameOver): ?>
 
 <form action="game.php">
-    <button>➡️ Next Question</button>
+    <button class="btn btn-next">➡️ Next Question</button>
 </form>
 
 <form action="cashout.php" method="POST">
-    <button>💰 Cash Out</button>
+    <button class="btn btn-cashout">💰 Cash Out</button>
 </form>
 
 <?php else: ?>
@@ -108,7 +112,7 @@ unset($_SESSION['filtered_options']);
 <h3>Game Over</h3>
 
 <form action="leaderboard.php">
-    <button>View Leaderboard</button>
+    <button class="btn btn-primary">View Leaderboard</button>
 </form>
 
 <?php endif; ?>
@@ -118,6 +122,6 @@ unset($_SESSION['filtered_options']);
 $_SESSION['question_locked'] = false; 
 unset($_SESSION['phone_hint']);?>
 
-
+</div>
 </body>
 </html>

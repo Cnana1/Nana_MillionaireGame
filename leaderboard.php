@@ -52,11 +52,13 @@ file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
 <html>
 <head>
     <title>Leaderboard</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
-<body>
+<body class="game-page">
+<div class="game-container">
 
 <form method="POST" action="logout.php">
-    <button type="submit">Logout</button>
+    <button type="submit" class="btn btn-logout">Logout</button>
 </form>
 
 <h2>Leaderboard</h2>
@@ -74,5 +76,6 @@ file_put_contents($file, json_encode($data, JSON_PRETTY_PRINT));
     </ol>
 <?php endif; ?>
 
+</div>
 </body>
 </html>

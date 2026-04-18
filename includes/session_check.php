@@ -21,17 +21,6 @@ function isLoggedIn() {
 }
 
 /**
- * Redirect to login if not authenticated
- * Use this on pages that require login (game.php, result.php, leaderboard.php)
- */
-function requireLogin() {
-    if (!isLoggedIn()) {
-        header('Location: login.php');
-        exit();
-    }
-}
-
-/**
  * Redirect to game if already logged in
  * Use this on login.php and register.php
  */
@@ -53,15 +42,6 @@ function initializeGameSession($username) {
     $_SESSION['seen_ids'] = [];
     $_SESSION['recent_answers'] = [];
     $_SESSION['ai_difficulty'] = 1; // Start at level 1
-}
-
-/**
- * Destroy session securely
- * Used by logout.php
- */
-function secureLogout() {
-    $_SESSION = [];
-    session_destroy();
 }
 
 ?>
